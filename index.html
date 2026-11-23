@@ -24,7 +24,7 @@ function updateCalc(){let a=calc(draft());calculationEl.textContent=a[0]+' kcal 
 function openEditor(r){editing=r?.id??null;selected=[...(r?.tags||[])];refreshCats();formTitleEl.textContent=r?'Editar receta':'Nueva receta';recipeName.value=r?.name||'';categoryField.value=r?.cat||cats[0];servingsField.value=r?.servings||1;recipeTime.value=r?.time||'';stepsField.value=r?.steps||'';linesField.innerHTML='';(r?.items||[[foods[0].name,100]]).forEach(x=>addLine(...x));$('delete').hidden=!r;updateCalc();editorDialog.showModal()}
 function view(r){viewing=r.id;let a=calc(r);viewTagsEl.innerHTML=[r.cat,...(r.tags||[])].map(pill).join('');viewTitleEl.textContent=r.name;viewMetaEl.textContent=r.time+' · '+r.servings+' ración(es)';statsEl.innerHTML=['kcal','proteína','carbohidratos','grasas'].map((t,i)=>'<div class="stat"><strong>'+a[i]+(i?' g':'')+'</strong><span class="hint">'+t+'</span></div>').join('');viewIngredientsEl.innerHTML=r.items.map(x=>'<li><span>'+esc(x[0])+'</span><strong>'+x[1]+' g/ml</strong></li>').join('');viewStepsEl.innerHTML=r.steps.split('\n').filter(Boolean).map(s=>'<li><span>'+esc(s)+'</span></li>').join('');viewerDialog.showModal()}
 filtersEl.onclick=e=>{let b=e.target.closest('[data-tag]');if(b){active=b.dataset.tag==='Todas'?'':b.dataset.tag;render()}};searchField.oninput=render;cardsEl.onclick=e=>{let d=e.target.closest('[data-id]');if(d)view(recipes.find(r=>r.id===+d.dataset.id))};$('add').onclick=()=>openEditor();$('cancel').onclick=()=>editorDialog.close();$('addline').onclick=()=>addLine();$('addfood').onclick=()=>foodDialogEl.showModal();$('closefood').onclick=()=>foodDialogEl.close();$('closeview').onclick=()=>viewerDialog.close();$('edit').onclick=()=>{viewerDialog.close();openEditor(recipes.find(r=>r.id===viewing))};tagChoicesEl.onclick=e=>{let b=e.target.closest('[data-tag]');if(!b)return;let t=b.dataset.tag;selected=selected.includes(t)?selected.filter(x=>x!==t):[...selected,t];refreshCats()};categoryField.onchange=updateCalc;servingsField.oninput=updateCalc;$('delete').onclick=()=>{if(confirm('¿Eliminar esta receta?')){recipes=recipes.filter(r=>r.id!==editing);persist();editorDialog.close()}};recipeForm.onsubmit=e=>{e.preventDefault();let r=draft();recipes=editing?recipes.map(x=>x.id===editing?r:x):[...recipes,r];persist();editorDialog.close()};foodFormEl.onsubmit=e=>{e.preventDefault();let n=foodNameEl.value.trim();if(foods.some(f=>f.name.toLowerCase()===n.toLowerCase()))return alert('Este alimento ya existe');foods.push({name:n,k:+foodKEl.value,p:+foodPEl.value,c:+foodCEl.value,f:+foodFEl.value});persist();let old=[...linesField.children].map(d=>[d.querySelector('select').value,+d.querySelector('input').value]);linesField.innerHTML='';old.forEach(x=>addLine(...x));addLine(n,100);foodFormEl.reset();foodDialogEl.close();updateCalc()};$('categories').onclick=()=>{catListEl.innerHTML=cats.map(c=>pill(c)).join('');catDialogEl.showModal()};$('closecat').onclick=()=>catDialogEl.close();catFormEl.onsubmit=e=>{e.preventDefault();let c=newCatEl.value.trim();if(!cats.includes(c)){cats.push(c);persist()}newCatEl.value='';catListEl.innerHTML=cats.map(pill).join('')};render();
-</script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.84.0/dist/umd/supabase.min.js"></script>
+</script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.84.0"></script>
 <script>
 (()=>{
 'use strict';
@@ -67,6 +67,7 @@ async function flush(){
   saving=false;
 }
 function queueSave(){if(currentUser&&ready){pending=true;void flush()}}
+const defaultFoods=copy(foods);const defaultCats=copy(cats);
 const originalPersist=persist;
 persist=function(){originalPersist();queueSave()};
 async function loadUser(session){
@@ -154,7 +155,7 @@ $cloud('authSignOut').onclick=async()=>{
  localStorage.removeItem('recetario_v3_foods');
  localStorage.removeItem('recetario_v3_cats');
  recipes=copy(defaults);
- cats=['Desayuno','Comida','Cena','Merienda','Pollo','Pescado','Carne','Arroz','Patata','Dulce','Rápida'];
+ foods=copy(defaultFoods);cats=copy(defaultCats);
  render();drawSession();authDialog.close();setStatus('Sesión cerrada. Datos en la nube protegidos.');
 };
 window.addEventListener('online',()=>{if(pending)void flush()});
