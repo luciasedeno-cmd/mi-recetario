@@ -1,7 +1,9 @@
 <!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mi recetario</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23f5a9c5'%3E%3Cellipse cx='32' cy='17' rx='10' ry='15'/%3E%3Cellipse cx='32' cy='47' rx='10' ry='15'/%3E%3Cellipse cx='17' cy='32' rx='15' ry='10'/%3E%3Cellipse cx='47' cy='32' rx='15' ry='10'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='9' fill='%23f8d86a'/%3E%3C/svg%3E"><style>
-:root{font-family:Inter,system-ui,sans-serif;color:#342b30;background:#fffafc}*{box-sizing:border-box}body{margin:0}header{background:#fce5ee;padding:45px max(22px,calc((100vw - 1050px)/2));border-bottom:1px solid #f4d4e1}h1{font-size:clamp(32px,4vw,48px);margin:0 0 8px;letter-spacing:-.045em}h2{letter-spacing:-.025em}header p,.muted{color:#796b73}main{max-width:1050px;margin:35px auto;padding:0 20px}button,input,select,textarea{font:inherit;padding:12px;border:1px solid #e5d4dc;border-radius:12px;background:white;color:inherit}select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%237c6070' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:38px}button{cursor:pointer}button.primary{background:#d77fa6;color:white;border-color:#d77fa6;font-weight:650}button:hover{border-color:#d77fa6}.bar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.bar input{flex:1;min-width:180px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 26px}.chip{border:1px solid #edcfdb;background:#fff;border-radius:999px;padding:8px 14px;font-size:13px}.chip.active{background:#f5c9dc;border-color:#e9a5c1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.card{background:white;border:1px solid #efdee5;border-radius:18px;padding:24px;cursor:pointer;transition:transform .15s,border-color .15s}.card:hover{transform:translateY(-2px);border-color:#e6aac3}.card h2{font-size:22px;margin:16px 0}.muted{font-size:14px}.pill{display:inline-block;background:#fce7ef;color:#a84d75;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:600;margin:2px 5px 2px 0}dialog{width:min(730px,95vw);border:1px solid #f0d9e3;border-radius:22px;padding:30px;max-height:90vh;box-shadow:0 20px 60px #53303b26}dialog::backdrop{background:#3826308c}label{display:block;margin:14px 0 6px;font-size:14px;font-weight:600}form input,form select,form textarea{width:100%}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.line{display:grid;grid-template-columns:1fr 90px 40px;gap:7px;margin:8px 0}.line input{min-width:0}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.totals{padding:18px;background:#fff0f6;border-radius:14px;margin:18px 0;font-weight:600}.detailhead{background:#fff1f7;margin:-30px -30px 24px;padding:30px;border-radius:22px 22px 0 0}.detailhead h2{font-size:29px;margin:15px 0 8px}.stats{display:flex;gap:10px;flex-wrap:wrap}.stat{background:white;border:1px solid #f1d8e3;border-radius:12px;padding:12px;min-width:105px}.stat strong{display:block;font-size:19px}.section{border-top:1px solid #f0e2e8;padding-top:18px;margin-top:22px}.ingredient-list{list-style:none;padding:0}.ingredient-list li{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #f3e8ed}.steps{list-style:none;counter-reset:step;padding:0}.steps li{counter-increment:step;display:flex;gap:15px;margin:16px 0;line-height:1.6}.steps li:before{content:counter(step);display:grid;place-items:center;flex:0 0 32px;height:32px;border-radius:50%;background:#f8d8e5;color:#a84d75;font-weight:700}.hint{font-size:13px;color:#8b7680}#empty{padding:30px;color:#796b73}@media(max-width:500px){dialog{padding:18px}.detailhead{margin:-18px -18px 20px;padding:20px}.two{grid-template-columns:1fr}.line{grid-template-columns:1fr 80px 36px}}</style>
-<header><h1>Mi recetario</h1><p>1.850 kcal al día · 110 g proteína · 4 comidas</p></header><main><div class="bar"><input id="search" placeholder="Buscar receta"><button id="categories">Gestionar etiquetas</button><button class="primary" id="add">Añadir receta</button></div><div class="chips" id="filters"></div><div class="grid" id="cards"></div><div id="empty" hidden>No hay recetas con esos filtros.</div></main>
-<dialog id="viewer"><div class="detailhead"><div id="viewtags"></div><h2 id="viewtitle"></h2><p id="viewmeta" class="muted"></p><div class="stats" id="stats"></div></div><section class="section"><h3>Ingredientes</h3><ul class="ingredient-list" id="viewingredients"></ul></section><section class="section"><h3>Preparación</h3><ol class="steps" id="viewsteps"></ol></section><div class="actions"><button class="primary" id="edit">Editar receta</button><button id="closeview">Cerrar</button></div></dialog>
+:root{font-family:Inter,system-ui,sans-serif;color:#342b30;background:#fffafc}*{box-sizing:border-box}body{margin:0}header{background:#fce5ee;padding:45px max(22px,calc((100vw - 1050px)/2));border-bottom:1px solid #f4d4e1}h1{font-size:clamp(32px,4vw,48px);margin:0 0 8px;letter-spacing:-.045em}h2{letter-spacing:-.025em}header p,.muted{color:#796b73}main{max-width:1050px;margin:35px auto;padding:0 20px}button,input,select,textarea{font:inherit;padding:12px;border:1px solid #e5d4dc;border-radius:12px;background:white;color:inherit}select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%237c6070' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:38px}button{cursor:pointer}button.primary{background:#d77fa6;color:white;border-color:#d77fa6;font-weight:650}button:hover{border-color:#d77fa6}.bar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.bar input{flex:1;min-width:180px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 26px}.chip{border:1px solid #edcfdb;background:#fff;border-radius:999px;padding:8px 14px;font-size:13px}.chip.active{background:#f5c9dc;border-color:#e9a5c1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.card{background:white;border:1px solid #efdee5;border-radius:18px;padding:24px;cursor:pointer;transition:transform .15s,border-color .15s}.card:hover{transform:translateY(-2px);border-color:#e6aac3}.card h2{font-size:22px;margin:16px 0}.muted{font-size:14px}.pill{display:inline-block;background:#fce7ef;color:#a84d75;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:600;margin:2px 5px 2px 0}dialog{width:min(730px,95vw);border:1px solid #f0d9e3;border-radius:22px;padding:30px;max-height:90vh;box-shadow:0 20px 60px #53303b26}dialog::backdrop{background:#3826308c}label{display:block;margin:14px 0 6px;font-size:14px;font-weight:600}form input,form select,form textarea{width:100%}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.line{display:grid;grid-template-columns:1fr 90px 40px;gap:7px;margin:8px 0}.line input{min-width:0}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.totals{padding:18px;background:#fff0f6;border-radius:14px;margin:18px 0;font-weight:600}.detailhead{background:#fff1f7;margin:-30px -30px 24px;padding:30px;border-radius:22px 22px 0 0}.detailhead h2{font-size:29px;margin:15px 0 8px}.stats{display:flex;gap:10px;flex-wrap:wrap}.stat{background:white;border:1px solid #f1d8e3;border-radius:12px;padding:12px;min-width:105px}.stat strong{display:block;font-size:19px}.section{border-top:1px solid #f0e2e8;padding-top:18px;margin-top:22px}.ingredient-list{list-style:none;padding:0}.ingredient-list li{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #f3e8ed}.steps{list-style:none;counter-reset:step;padding:0}.steps li{counter-increment:step;display:flex;gap:15px;margin:16px 0;line-height:1.6}.steps li:before{content:counter(step);display:grid;place-items:center;flex:0 0 32px;height:32px;border-radius:50%;background:#f8d8e5;color:#a84d75;font-weight:700}.hint{font-size:13px;color:#8b7680}#empty{padding:30px;color:#796b73}@media(max-width:500px){dialog{padding:18px}.detailhead{margin:-18px -18px 20px;padding:20px}.two{grid-template-columns:1fr}.line{grid-template-columns:1fr 80px 36px}}
+.cloud-tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}.cloud-status{font-size:13px;color:#795d6c}.cloud-tools button{padding:9px 16px;background:#fff8fb;border-color:#eec4d6}.cloud-tools button:hover{background:#fff}.auth-message{font-size:13px;color:#856073;min-height:20px}.auth-help{background:#fff0f6;padding:12px;border-radius:12px;font-size:13px;line-height:1.6;color:#765e6c}.auth-small{margin:8px 0 0;color:#927c87;font-size:12px}.auth-account{font-size:13px;overflow-wrap:anywhere}.cloud-tools .busy{opacity:.6;pointer-events:none}
+</style>
+<header><h1>Mi recetario</h1><p>1.850 kcal al día · 110 g proteína · 4 comidas</p><div class="cloud-tools"><button id="authopen" type="button">Iniciar sesión y sincronizar</button><span class="cloud-status" id="cloudstatus" role="status" aria-live="polite">Solo guardado en este navegador</span></div></header><main><div class="bar"><input id="search" placeholder="Buscar receta"><button id="categories">Gestionar etiquetas</button><button class="primary" id="add">Añadir receta</button></div><div class="chips" id="filters"></div><div class="grid" id="cards"></div><div id="empty" hidden>No hay recetas con esos filtros.</div></main>
+<dialog id="authDialog"><h2>Sincronización de recetas</h2><p class="muted">Inicia sesión con tu correo electrónico para guardar las recetas en Supabase y consultarlas desde otros dispositivos.</p><div id="authLoggedOut"><form id="authForm"><label for="authEmail">Correo electrónico</label><input type="email" id="authEmail" required autocomplete="email" placeholder="tu@email.com"><div class="actions"><button class="primary" type="submit" id="authSend">Enviarme enlace de acceso</button><button type="button" id="authCancel">Cerrar</button></div></form><p class="auth-help">Recibirás un enlace de acceso en tu correo. Ábrelo para iniciar sesión. La primera vez se copiarán a la nube las recetas que ya tengas en este navegador.</p><p class="auth-message" id="authMessage"></p></div><div id="authLoggedIn" hidden><p class="auth-account" id="authAccount"></p><p class="auth-help">Los cambios nuevos se guardan automáticamente en la nube. Los datos que todavía tengas en otro navegador pueden importarse desde allí iniciando sesión y utilizando «Importar recetas locales».</p><div class="actions"><button class="primary" id="authImport" type="button">Importar recetas locales</button><button id="authSignOut" type="button">Cerrar sesión</button><button id="authClose" type="button">Cerrar</button></div><p class="auth-message" id="authImportMessage"></p></div></dialog><dialog id="viewer"><div class="detailhead"><div id="viewtags"></div><h2 id="viewtitle"></h2><p id="viewmeta" class="muted"></p><div class="stats" id="stats"></div></div><section class="section"><h3>Ingredientes</h3><ul class="ingredient-list" id="viewingredients"></ul></section><section class="section"><h3>Preparación</h3><ol class="steps" id="viewsteps"></ol></section><div class="actions"><button class="primary" id="edit">Editar receta</button><button id="closeview">Cerrar</button></div></dialog>
 <dialog id="editor"><form id="form"><h2 id="formtitle">Nueva receta</h2><label>Nombre</label><input id="name" required><div class="two"><div><label>Tipo de comida</label><select id="category"></select></div><div><label>Raciones</label><input id="servings" type="number" min="1" value="1" required></div></div><label>Etiquetas (selecciona varias)</label><div class="chips" id="tagchoices"></div><label>Tiempo de preparación</label><input id="time" placeholder="25 min"><h3>Ingredientes</h3><p class="hint">Valores aproximados por 100 g o ml. Puedes añadir los de tus productos.</p><div id="lines"></div><button type="button" id="addline">Añadir ingrediente</button> <button type="button" id="addfood">Nuevo alimento</button><div class="totals" id="calculation"></div><label>Preparación (un paso por línea)</label><textarea id="steps" rows="5"></textarea><div class="actions"><button type="submit" class="primary">Guardar receta</button><button type="button" id="cancel">Cancelar</button><button type="button" id="delete" hidden>Eliminar</button></div></form></dialog>
 <dialog id="foodDialog"><form id="foodform"><h2>Nuevo alimento</h2><p class="hint">Introduce los datos nutricionales por 100 g o 100 ml de la etiqueta.</p><label>Nombre</label><input id="foodname" required><div class="two"><div><label>kcal</label><input id="foodk" type="number" min="0" step=".1" required></div><div><label>Proteína (g)</label><input id="foodp" type="number" min="0" step=".1" required></div><div><label>Carbohidratos (g)</label><input id="foodc" type="number" min="0" step=".1" required></div><div><label>Grasas (g)</label><input id="foodf" type="number" min="0" step=".1" required></div></div><div class="actions"><button class="primary">Guardar alimento</button><button type="button" id="closefood">Cancelar</button></div></form></dialog>
 <dialog id="catDialog"><h2>Gestionar etiquetas</h2><div id="catlist"></div><form id="catform"><label>Nueva etiqueta</label><input id="newcat" required><div class="actions"><button class="primary">Añadir etiqueta</button><button type="button" id="closecat">Cerrar</button></div></form></dialog>
@@ -22,4 +24,140 @@ function updateCalc(){let a=calc(draft());calculationEl.textContent=a[0]+' kcal 
 function openEditor(r){editing=r?.id??null;selected=[...(r?.tags||[])];refreshCats();formTitleEl.textContent=r?'Editar receta':'Nueva receta';recipeName.value=r?.name||'';categoryField.value=r?.cat||cats[0];servingsField.value=r?.servings||1;recipeTime.value=r?.time||'';stepsField.value=r?.steps||'';linesField.innerHTML='';(r?.items||[[foods[0].name,100]]).forEach(x=>addLine(...x));$('delete').hidden=!r;updateCalc();editorDialog.showModal()}
 function view(r){viewing=r.id;let a=calc(r);viewTagsEl.innerHTML=[r.cat,...(r.tags||[])].map(pill).join('');viewTitleEl.textContent=r.name;viewMetaEl.textContent=r.time+' · '+r.servings+' ración(es)';statsEl.innerHTML=['kcal','proteína','carbohidratos','grasas'].map((t,i)=>'<div class="stat"><strong>'+a[i]+(i?' g':'')+'</strong><span class="hint">'+t+'</span></div>').join('');viewIngredientsEl.innerHTML=r.items.map(x=>'<li><span>'+esc(x[0])+'</span><strong>'+x[1]+' g/ml</strong></li>').join('');viewStepsEl.innerHTML=r.steps.split('\n').filter(Boolean).map(s=>'<li><span>'+esc(s)+'</span></li>').join('');viewerDialog.showModal()}
 filtersEl.onclick=e=>{let b=e.target.closest('[data-tag]');if(b){active=b.dataset.tag==='Todas'?'':b.dataset.tag;render()}};searchField.oninput=render;cardsEl.onclick=e=>{let d=e.target.closest('[data-id]');if(d)view(recipes.find(r=>r.id===+d.dataset.id))};$('add').onclick=()=>openEditor();$('cancel').onclick=()=>editorDialog.close();$('addline').onclick=()=>addLine();$('addfood').onclick=()=>foodDialogEl.showModal();$('closefood').onclick=()=>foodDialogEl.close();$('closeview').onclick=()=>viewerDialog.close();$('edit').onclick=()=>{viewerDialog.close();openEditor(recipes.find(r=>r.id===viewing))};tagChoicesEl.onclick=e=>{let b=e.target.closest('[data-tag]');if(!b)return;let t=b.dataset.tag;selected=selected.includes(t)?selected.filter(x=>x!==t):[...selected,t];refreshCats()};categoryField.onchange=updateCalc;servingsField.oninput=updateCalc;$('delete').onclick=()=>{if(confirm('¿Eliminar esta receta?')){recipes=recipes.filter(r=>r.id!==editing);persist();editorDialog.close()}};recipeForm.onsubmit=e=>{e.preventDefault();let r=draft();recipes=editing?recipes.map(x=>x.id===editing?r:x):[...recipes,r];persist();editorDialog.close()};foodFormEl.onsubmit=e=>{e.preventDefault();let n=foodNameEl.value.trim();if(foods.some(f=>f.name.toLowerCase()===n.toLowerCase()))return alert('Este alimento ya existe');foods.push({name:n,k:+foodKEl.value,p:+foodPEl.value,c:+foodCEl.value,f:+foodFEl.value});persist();let old=[...linesField.children].map(d=>[d.querySelector('select').value,+d.querySelector('input').value]);linesField.innerHTML='';old.forEach(x=>addLine(...x));addLine(n,100);foodFormEl.reset();foodDialogEl.close();updateCalc()};$('categories').onclick=()=>{catListEl.innerHTML=cats.map(c=>pill(c)).join('');catDialogEl.showModal()};$('closecat').onclick=()=>catDialogEl.close();catFormEl.onsubmit=e=>{e.preventDefault();let c=newCatEl.value.trim();if(!cats.includes(c)){cats.push(c);persist()}newCatEl.value='';catListEl.innerHTML=cats.map(pill).join('')};render();
+</script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.84.0/dist/umd/supabase.min.js"></script>
+<script>
+(()=>{
+'use strict';
+const $cloud=id=>document.getElementById(id);
+const status=$cloud('cloudstatus');
+const authDialog=$cloud('authDialog');
+const authMessage=$cloud('authMessage');
+const importMessage=$cloud('authImportMessage');
+const apiUrl='https://rljtazvllytstalkevzo.supabase.co';
+const apiKey='sb_publishable_LKwc2AgPlOleokSokQSkog_byONltni';
+const landing='https://mi-recetario-web.vercel.app';
+let client=null, currentUser=null, ready=false, saving=false, pending=false, localCopy=null, generation=0;
+const copy=x=>JSON.parse(JSON.stringify(x));
+const setStatus=t=>{status.textContent=t};
+function drawSession(){
+  $cloud('authLoggedOut').hidden=!!currentUser;
+  $cloud('authLoggedIn').hidden=!currentUser;
+  $cloud('authopen').textContent=currentUser?'Mi cuenta y sincronización':'Iniciar sesión y sincronizar';
+  if(currentUser)$cloud('authAccount').textContent='Sesión iniciada: '+(currentUser.email||'Cuenta conectada');
+}
+async function flush(){
+  if(!currentUser||!ready||saving||!client)return;
+  saving=true;
+  while(pending&&currentUser&&ready){
+    pending=false;
+    const owner=currentUser.id;
+    const data={user_id:owner,recetas:copy(recipes),alimentos:copy(foods),categorias:copy(cats),updated_at:new Date().toISOString()};
+    setStatus('Guardando en la nube...');
+    try{
+      const {error}=await client.from('recetario_documentos').upsert(data,{onConflict:'user_id'});
+      if(error)throw error;
+      if(owner!==currentUser?.id)break;
+      setStatus('Sincronizado con Supabase');
+    }catch(e){
+      pending=true;
+      setStatus('Sincronización pendiente: '+(e?.message||'sin conexión'));
+      break;
+    }
+  }
+  saving=false;
+}
+function queueSave(){if(currentUser&&ready){pending=true;void flush()}}
+const originalPersist=persist;
+persist=function(){originalPersist();queueSave()};
+async function loadUser(session){
+  const user=session?.user||null;
+  if(!user){
+    currentUser=null;ready=false;pending=false;
+    drawSession();setStatus('Solo guardado en este navegador');return;
+  }
+  if(currentUser?.id===user.id&&ready)return;
+  const seq=++generation;
+  const newLogin=!currentUser || currentUser.id!==user.id;
+  if(newLogin)localCopy={recetas:copy(recipes),alimentos:copy(foods),categorias:copy(cats)};
+  currentUser=user;ready=false;drawSession();setStatus('Cargando tus recetas...');
+  try{
+    const {data,error}=await client.from('recetario_documentos').select('recetas,alimentos,categorias').eq('user_id',user.id).maybeSingle();
+    if(error)throw error;
+    if(seq!==generation||currentUser?.id!==user.id)return;
+    if(data){
+      if(Array.isArray(data.recetas))recipes=data.recetas;
+      if(Array.isArray(data.alimentos))foods=data.alimentos;
+      if(Array.isArray(data.categorias))cats=data.categorias;
+      store('recipes',recipes);store('foods',foods);store('cats',cats);
+      render();ready=true;setStatus('Sincronizado con Supabase');
+    }else{
+      ready=true;pending=true;await flush();
+    }
+  }catch(e){
+    ready=false;setStatus('No se pudo cargar Supabase: '+(e?.message||'error'));
+  }
+}
+async function init(){
+ if(!window.supabase?.createClient){setStatus('No se pudo cargar la biblioteca de Supabase');return}
+ client=window.supabase.createClient(apiUrl,apiKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+ client.auth.onAuthStateChange((event,session)=>{
+   if(event==='SIGNED_IN'||event==='INITIAL_SESSION'||event==='SIGNED_OUT')
+     setTimeout(()=>{void loadUser(session)},0);
+ });
+ try{
+   const {data,error}=await client.auth.getSession();
+   if(error)throw error;
+   await loadUser(data.session);
+ }catch(e){setStatus('Error de acceso: '+(e?.message||'desconocido'))}
+}
+$cloud('authopen').onclick=()=>{drawSession();authDialog.showModal()};
+$cloud('authCancel').onclick=()=>authDialog.close();
+$cloud('authClose').onclick=()=>authDialog.close();
+$cloud('authForm').onsubmit=async e=>{
+ e.preventDefault();
+ if(!client)return;
+ const button=$cloud('authSend');
+ button.disabled=true;authMessage.textContent='Enviando enlace...';
+ try{
+   const email=$cloud('authEmail').value.trim();
+   const {error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:landing}});
+   if(error)throw error;
+   authMessage.textContent='Enlace enviado. Revisa también spam; abre el enlace en el navegador.';
+ }catch(e){authMessage.textContent='No se pudo enviar: '+(e?.message||'error')}
+ finally{button.disabled=false}
+};
+$cloud('authImport').onclick=async()=>{
+ if(!currentUser||!ready||!localCopy)return;
+ const additions=localCopy.recetas.filter(r=>!recipes.some(cl=>cl.name.trim().toLowerCase()===r.name.trim().toLowerCase()));
+ const addedFoods=localCopy.alimentos.filter(f=>!foods.some(cl=>cl.name.trim().toLowerCase()===f.name.trim().toLowerCase()));
+ const addedTags=localCopy.categorias.filter(c=>!cats.includes(c));
+ if(!additions.length&&!addedFoods.length&&!addedTags.length){
+   importMessage.textContent='No hay recetas, alimentos ni categorías nuevos por importar.';
+   return;
+ }
+ if(!confirm('Se añadirán '+additions.length+' recetas locales nuevas a la nube. Las recetas con el mismo nombre no se reemplazarán. ¿Continuar?'))return;
+ const ids=new Set(recipes.map(r=>String(r.id)));
+ additions.forEach((r,i)=>{r=copy(r);if(ids.has(String(r.id)))r.id=Date.now()+i;ids.add(String(r.id));recipes.push(r)});
+ foods.push(...addedFoods);cats.push(...addedTags);
+ persist();render();
+ importMessage.textContent='Importados: '+additions.length+' recetas, '+addedFoods.length+' alimentos y '+addedTags.length+' etiquetas.';
+ localCopy={recetas:copy(recipes),alimentos:copy(foods),categorias:copy(cats)};
+};
+$cloud('authSignOut').onclick=async()=>{
+ if(!client)return;
+ if(pending)await flush();
+ if(pending){importMessage.textContent='Hay cambios sin sincronizar. No se ha cerrado la sesión.';return}
+ const {error}=await client.auth.signOut();
+ if(error){importMessage.textContent=error.message;return}
+ generation++;currentUser=null;ready=false;pending=false;
+ localStorage.removeItem('recetario_v3_recipes');
+ localStorage.removeItem('recetario_v3_foods');
+ localStorage.removeItem('recetario_v3_cats');
+ recipes=copy(defaults);
+ cats=['Desayuno','Comida','Cena','Merienda','Pollo','Pescado','Carne','Arroz','Patata','Dulce','Rápida'];
+ render();drawSession();authDialog.close();setStatus('Sesión cerrada. Datos en la nube protegidos.');
+};
+window.addEventListener('online',()=>{if(pending)void flush()});
+void init();
+})();
 </script></html>
