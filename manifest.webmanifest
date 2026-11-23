@@ -1,0 +1,16 @@
+{
+  "name": "Mi recetario",
+  "short_name": "Recetario",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffecf5",
+  "theme_color": "#ffecf5",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
